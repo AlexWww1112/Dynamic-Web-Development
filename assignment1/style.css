@@ -1,0 +1,72 @@
+body {
+    margin: 0%;
+}
+
+p {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: larger;
+}
+
+a {
+    color: grey;
+    text-decoration: none;
+}
+
+#intro {
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 30px;
+}
+
+#aaa {
+    text-align: center;
+}
+
+#aaa:hover {
+    background-color: yellow;
+}
+
+#headline {
+    background-color: blueviolet;
+    padding: 5px;
+    padding-left: 50px;
+}
+
+h1 { 
+	font-family: "Arial", "Helvetica", sans-serif; 
+    color: aliceblue;
+}
+
+.container {
+    display: flex;
+}
+
+.box {
+    flex: 1 1 50%;
+    height: 400px;  
+    width: 100%;
+    margin: 20px;
+    background-color: lightblue;
+}
+
+.box img {
+    opacity: 0;
+    transition: opacity 0.3s;
+    height: 100%;
+    width: 100%;
+}
+
+.box:hover img {
+    opacity: 1;
+}
+
+.imageLink {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#gamerule {
+    padding-top: 10px;
+    padding-left: 150px;
+    padding-right: 150px;
+}
