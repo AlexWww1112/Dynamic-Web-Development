@@ -1,0 +1,41 @@
+body {
+    background-color: papayawhip;
+    height: 100px;
+}
+
+p {
+    font-size: 24px;
+}
+
+.blue-text {
+    color: blue;
+}
+
+#big {
+    font-size: 30px;
+    color: olive;
+    border: 5px solid black;
+    margin-left: 50px;
+    padding: 10px;
+}
+
+#howdy {
+    background-color: goldenrod;
+}
+
+.parent {
+    height: 400px;
+    background-color: cyan;
+    display: flex;
+    gap: 10px;
+    /* horizontally arranged for child elements*/
+    justify-content: center;
+    /* vertically arranged of parent */
+    align-items: center;
+}
+
+.child {
+    width: 50px;
+    height: 50px;
+    background-color: violet;
+}
