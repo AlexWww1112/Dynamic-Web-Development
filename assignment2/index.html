@@ -65,7 +65,7 @@
                 const img = a.querySelector("img");
 
                 a.addEventListener("mouseenter", () => {
-                    const url = (img && img.currentSrc) || (img && img.src);
+                    const url = img.src;
                     showBackground(url);
                 });
 
