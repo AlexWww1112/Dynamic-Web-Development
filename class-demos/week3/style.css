@@ -1,0 +1,12 @@
+#important{
+    color: blanchedalmond;
+    background-color: chartreuse;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
