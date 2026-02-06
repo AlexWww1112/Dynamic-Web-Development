@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Scatter</title>
+        <link rel="stylesheet" href="./style.css" />
+    </head>
+    <body>
+        <div class="bg" aria-hidden="true"></div>
+
+        <div class="stage">
+            <h1 class="title">AOMORI</h1>
+
+            <div class="scatter">
+                <div class="photo" style="--x: 18%; --y: 62%; --r: -3deg; --s: 96px;">
+                    <img src="images/dog.jpg" alt="p1" />
+                </div>
+
+                <div class="photo" style="--x: 34%; --y: 62%; --r: 2deg; --s: 96px;">
+                    <img src="images/nebuta1.jpg" alt="p2" />
+                </div>
+
+                <div class="photo" style="--x: 50%; --y: 62%; --r: -1deg; --s: 96px;">
+                    <img src="images/ruin1.jpg" alt="p3" />
+                </div>
+
+                <div class="photo" style="--x: 66%; --y: 62%; --r: 3deg; --s: 96px;">
+                    <img src="images/snow1.jpg" alt="p4" />
+                </div>
+
+                <div class="photo" style="--x: 82%; --y: 62%; --r: -2deg; --s: 96px;">
+                    <img src="images/art1.jpg" alt="p5" />
+                </div>
+
+                <div class="photo" style="--x: 26%; --y: 78%; --r: 2deg; --s: 104px;">
+                    <img src="images/nebuta2.jpg" alt="p6" />
+                </div>
+
+                <div class="photo" style="--x: 42%; --y: 78%; --r: -3deg; --s: 104px;">
+                    <img src="images/nara2.jpg" alt="p7" />
+                </div>
+
+                <div class="photo" style="--x: 58%; --y: 78%; --r: 1deg; --s: 104px;">
+                    <img src="images/train1.jpg" alt="p8" />
+                </div>
+
+                <div class="photo" style="--x: 74%; --y: 78%; --r: -2deg; --s: 104px;">
+                    <img src="images/apple1.jpg" alt="p9" />
+                </div>
+                <!-- <div class="photo" style="--x: 36%; --y: 60%; --r: -4deg; --s: 140px;">
+                    <img src="images/nara2.jpg" alt="p10" />
+                </div> -->
+            </div>
+        </div>
+
+        <script>
+            const bg = document.querySelector(".bg");
+            const photos = document.querySelectorAll(".photo");
+
+            function showBackground(url) {
+            bg.style.backgroundImage = url ? `url("${url}")` : "none";
+            bg.classList.toggle("is-on", Boolean(url));
+            }
+
+            photos.forEach((a) => {
+                const img = a.querySelector("img");
+
+                a.addEventListener("mouseenter", () => {
+                    const url = (img && img.currentSrc) || (img && img.src);
+                    showBackground(url);
+                });
+
+                a.addEventListener("mouseleave", () => {
+                    showBackground(null);
+                });
+
+                a.addEventListener("click", (e) => e.preventDefault());
+            });
+        </script>
+    </body>
+</html>
