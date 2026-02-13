@@ -1,63 +1,107 @@
-// alert('javescript page has been successfully linked');
+const q = document.getElementById("q");
+const btn = document.getElementById("btn");
+const statusEl = document.getElementById("status");
 
-console.log('this is a console messasge')
+const resultsTitle = document.getElementById("resultsTitle");
+const results = document.getElementById("results");
 
-window.onload = async () =>{
-    console.log("window has been loaded");
+const charsTitle = document.getElementById("charsTitle");
+const characters = document.getElementById("characters");
 
-    document.getElementById('important');
+//Search
+async function searchAnime() {
+    const query = q.value.trim();
+    if (!query) return;
 
-    document.getElementById('important').innerHTML = "I have <span>changed</span> the text with javascript";
+    statusEl.innerText = "Loading results...";
+    results.innerHTML = "";
+    characters.innerHTML = "";
+    charsTitle.style.display = "none";
 
-    let importantParagraph = document.getElementById('important');
-    importantParagraph.style.backgroundColor = "coral";
+    try {
+        const url = `https://api.jikan.moe/v4/anime?q=${encodeURIComponent(query)}&limit=10`;
+        const res = await fetch(url);
+        const data = await res.json();
 
-    importantParagraph.classList.add("hide");
-    importantParagraph.classList.remove("show");
-
-    let c = document.getElementById('container');
-    let i = document.createElement('img');
-    i.src = "dog.jpg";
-    c.appendChild(i);
-
-    c.addEventListener("click", ()=>{
-        console.log("clicked");
-
-        if(importantParagraph.classList.contains('hide')){
-            importantParagraph.classList.remove("hide");
-        } else{
-            importantParagraph.classList.add("hide");
+        const list = data.data || [];
+        if (list.length === 0) {
+            resultsTitle.style.display = "none";
+            statusEl.innerText = "No results found.";
+            return;
         }
-    });
 
-    let blues = document.getElementsByClassName("blue");
-    blues[1].style.backgroundColor = "skyblue";
+        resultsTitle.style.display = "block";
+        statusEl.innerText = "Click a cover to load characters.";
 
-    //api
-    let params = new URLSearchParams({
-        apikey: "3938baff",
-        s: "one battle after another",
-        type: "movie"
-    });
-    console.log(params);
-    let url = "https://www.omdbapi.com/?" + params;
-    console.log(url);
-    let response = await fetch(url);
-    console.log(response);
-   
-    let movieData = await response.json();
-    console.log(movieData);
+        for (const anime of list) {
+            const img = document.createElement("img");
 
-    let movies = movieData.Search;
-    console.log(movies);
+            //larger images
+            const cover =
+                anime.images?.jpg?.large_image_url ||
+                anime.images?.jpg?.image_url ||
+                "";
 
-    for(let m of movies){
-        let div = document.createElement("div");
-        div.textContent = m.Title;
-        let poster = document.createElement('img');
-        poster.src = m.Poster;
+            img.src = cover;
+            img.alt = anime.title || "Anime cover";
 
-        div.appendChild(poster);
-        c.appendChild(div);
+            img.addEventListener("click", () => loadCharacters(anime.mal_id, anime.title));
+
+            results.appendChild(img);
+        }
+    } catch (err) {
+        console.error(err);
+        statusEl.innerText = "Failed to load results. Try again.";
     }
-} 
+}
+
+//Characters
+async function loadCharacters(animeId, animeTitle) {
+    statusEl.innerText = `Loading characters for: ${animeTitle}...`;
+    characters.innerHTML = "";
+    charsTitle.style.display = "block";
+    charsTitle.innerText = `Characters: ${animeTitle}`;
+
+    try {
+        const url = `https://api.jikan.moe/v4/anime/${animeId}/characters`;
+        const res = await fetch(url);
+        const data = await res.json();
+
+        const list = data.data || [];
+        if (list.length === 0) {
+            statusEl.innerText = "No character data found.";
+            return;
+        }
+
+        statusEl.innerText = `Showing ${list.length} characters.`;
+
+        for (const item of list) {
+            const card = document.createElement("div");
+            card.className = "char-card";
+
+            const img = document.createElement("img");
+            img.src =
+                item.character?.images?.jpg?.image_url ||
+                item.character?.images?.webp?.image_url ||
+                "";
+            img.alt = item.character?.name || "Character";
+
+            const name = document.createElement("p");
+            name.innerText = item.character?.name || "Unknown";
+
+            card.appendChild(img);
+            card.appendChild(name);
+            characters.appendChild(card);
+        }
+    } catch (err) {
+        console.error(err);
+        statusEl.innerText = "Failed to load characters. Try clicking again.";
+    }
+}
+
+//Two ways of enter search
+btn.addEventListener("click", searchAnime);
+
+q.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") searchAnime();
+});

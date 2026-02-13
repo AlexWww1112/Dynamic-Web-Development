@@ -1,0 +1,123 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.page-wrap {
+  width: min(980px, calc(100% - 140px));
+  margin: 36px auto 40px;
+}
+
+.page-head {
+  margin: 0 0 18px;
+  text-align: center;
+}
+
+.search-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+#q {
+  width: min(560px, 100%);
+  padding: 10px 12px;
+}
+
+#btn {
+  padding: 10px 16px;
+}
+
+#status {
+  margin-top: 12px;
+  background: #f1f3f5;
+  color: #4b5563;
+  padding: 8px 12px;
+  /* border-radius: 8px; */
+  display: inline-block;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.grid img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  cursor: pointer;
+  /* border-radius: 8px; */
+}
+
+.result-card {
+  background: white;
+  border: 1px solid #ddd;
+  /* border-radius: 10px; */
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.result-card img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.anime-title {
+  margin: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.char-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.char-card {
+  border: 1px solid #ddd;
+  /* border-radius: 10px; */
+  overflow: hidden;
+  background: white;
+}
+
+.char-card img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+}
+
+.char-card p {
+  margin: 8px;
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .page-wrap {
+    width: min(980px, calc(100% - 48px));
+  }
+
+  .grid,
+  .char-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .search-row {
+    flex-direction: column;
+  }
+
+  .grid,
+  .char-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
