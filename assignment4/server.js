@@ -19,11 +19,11 @@ let todos = [
 ];
 
 //setting up
-app.get("/api/todos", (request, response) => {
+app.get("/todos", (request, response) => {
   response.json(todos);
 });
 
-app.post("/api/todos", (request, response) => {
+app.post("/todos", (request, response) => {
   const newTodo = {
     id: Date.now(),
     text: request.body.text,
@@ -34,7 +34,7 @@ app.post("/api/todos", (request, response) => {
   response.json(newTodo);
 });
 
-app.post("/api/todos/:id/toggle", (request, response) => {
+app.post("/todos/:id/toggle", (request, response) => {
   const id = parseInt(request.params.id, 10);
   if (Number.isNaN(id)) {
     return response.status(400).json({ message: "Invalid todo id" });
@@ -50,12 +50,12 @@ app.post("/api/todos/:id/toggle", (request, response) => {
   response.json(todo);
 });
 
-app.delete("/api/todos/completed", (request, response) => {
+app.delete("/todos/completed", (request, response) => {
   todos = todos.filter(todo => !todo.completed);
   response.json({ message: "Completed todos deleted" });
 });
 
-app.delete("/api/todos/:id", (request, response) => {
+app.delete("/todos/:id", (request, response) => {
   const id = parseInt(request.params.id, 10);
   if (Number.isNaN(id)) {
     return response.status(400).json({ message: "Invalid todo id" });

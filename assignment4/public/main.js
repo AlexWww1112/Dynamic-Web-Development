@@ -6,7 +6,7 @@ window.onload = function () {
 
     const input = document.getElementById("todoInput");
 
-    await fetch("/api/todos", {
+    await fetch("/todos", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -19,7 +19,7 @@ window.onload = function () {
   });
 
   document.getElementById("deleteCompletedBtn").addEventListener("click", async function () {
-    await fetch("/api/todos/completed", {
+    await fetch("/todos/completed", {
       method: "DELETE"
     });
     getTodos();
@@ -29,7 +29,7 @@ window.onload = function () {
 
 // get data
 async function getTodos() {
-  const response = await fetch("/api/todos");
+  const response = await fetch("/todos");
   const data = await response.json();
   renderTodos(data);
 }
@@ -45,7 +45,7 @@ function renderTodos(todos) {
     checkbox.type = "checkbox";
     checkbox.checked = todo.completed;
     checkbox.addEventListener("change", async function () {
-      await fetch(`/api/todos/${todo.id}/toggle`, {
+      await fetch(`/todos/${todo.id}/toggle`, {
         method: "POST"
       });
       getTodos();
