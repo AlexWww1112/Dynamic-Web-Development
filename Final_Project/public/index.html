@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Menu</title>
+    <link rel="stylesheet" href="menu.css" />
+    <script src="menu.js"></script>
+  </head>
+  <body>
+    <div class="page">
+      <h1>Journals</h1>
+
+      <form class="row" id="createForm" action="/api/journals" method="POST">
+        <input id="newTitle" name="title" placeholder="New journal title" />
+        <input type="hidden" name="templateId" value="template1" />
+        <button type="submit" id="createBtn">Create</button>
+      </form>
+
+      <div class="list" id="list"></div>
+
+      <small>Click a journal to open it, or create a new one to start editing.</small>
+    </div>
+  </body>
+</html>

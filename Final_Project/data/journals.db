@@ -1,0 +1,4 @@
+{"title":"Shanghai","templateId":"template2","createdAt":1772764027221,"updatedAt":1772768824245,"_id":"dTV0NdrwRWOui5RI"}
+{"title":"AOMORI","templateId":"template1","createdAt":1772729377436,"updatedAt":1772770439333,"_id":"kzABpRIDgzAl25bN"}
+{"$$indexCreated":{"fieldName":"updatedAt","unique":false,"sparse":false}}
+{"$$indexCreated":{"fieldName":"updatedAt"}}

@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Editor</title>
+    <link rel="stylesheet" href="./editor.css" />
+    <script src="editor.js"></script>
+  </head>
+  <body>
+    <div class="page">
+      <div class="topbar">
+        <a id="backLink" href="index.html">← Back</a>
+        <button type="submit" id="topSaveBtn" form="saveForm">Save Changes</button>
+        <a id="viewLink" href="#">Return To Journal</a>
+      </div>
+
+      <h1>Editor</h1>
+      <!-- action will change based on needs -->
+      <form id="saveForm" action="#" method="POST">
+        <div class="card">
+          <label for="titleInput">Title</label>
+          <input id="titleInput" name="title" />
+        </div>
+
+        <div class="card">
+          <label for="templateSelect">Template</label>
+          <select id="templateSelect" name="templateId">
+            <option value="template1">Template 1</option>
+            <option value="template2">Template 2</option>
+          </select>
+        </div>
+
+        <div class="card">
+          <h2>Preview</h2>
+          <div class="preview-shell">
+            <div class="preview-stage" id="previewStage">
+              <h3 class="preview-title" id="previewTitle"></h3>
+              <div class="preview-photos" id="previewPhotos"></div>
+            </div>
+          </div>
+          <div class="hint" id="titleHint"></div>
+        </div>
+        <input type="hidden" id="entriesInput" name="entries" />
+      </form>
+
+      <div class="card">
+        <label>Images And Notes</label>
+        <form id="uploadForm" method="POST" enctype="multipart/form-data">
+          <input type="file" name="images" multiple />
+          <button type="submit">Upload</button>
+        </form>
+        <div class="hint">A journal can only keep 9 images.</div>
+        <div id="images"></div>
+      </div>
+
+      <div class="card">
+        <button type="button" id="deleteJournalBtn">Delete Journal</button>
+      </div>
+    </div>
+  </body>
+</html>

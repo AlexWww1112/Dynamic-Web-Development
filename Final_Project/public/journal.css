@@ -1,0 +1,154 @@
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body{
+  margin: 0;
+  background: #f7f2e8;
+  overflow: hidden;
+  font-family: Comic Sans MS, Comic Sans, cursive;
+}
+
+.bg{
+  position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 260ms ease;
+}
+
+.bg.is-on{
+  opacity: 1;
+}
+
+.stage{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.topbar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 3;
+}
+
+.topbar a {
+  text-decoration: none;
+  color: #111;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #111;
+  padding: 8px 12px;
+}
+
+.title{
+  position: absolute;
+  left: 50%;
+  top: 24%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  border: grey 5px solid;
+  display: inline-block;
+  line-height: 1;
+  font-size: 10vw;
+  font-weight: 500;
+  color: coral;
+}
+
+.stage.template2 .title {
+  top: 40%;
+}
+
+.scatter{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 180px;
+  left: 0;
+}
+
+.photo{
+  --s: 140px;
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--s);
+  height: var(--s);
+
+  transform: translate(-50%, -50%) rotate(var(--r));
+  transform-origin: center;
+
+  overflow: hidden;
+  border: 3px solid #111;
+  background: #fff;
+  cursor: pointer;
+  transition: transform 180ms ease;
+}
+
+.photo img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.photo:hover{
+  transform: translate(-50%, -50%) rotate(var(--r)) scale(1.06);
+}
+
+.notePanel {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  width: min(720px, calc(100% - 32px));
+  transform: translateX(-50%);
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 3px solid #111;
+  z-index: 2;
+}
+
+.notePanel h2,
+.notePanel p {
+  margin: 0;
+}
+
+.notePanel p {
+  margin-top: 10px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  max-height: 4em;
+  overflow-y: auto;
+}
+
+@media (max-width: 700px) {
+  body {
+    overflow: auto;
+  }
+
+  .stage {
+    min-height: 100vh;
+  }
+
+  .title {
+    top: 18%;
+    width: calc(100% - 30px);
+    text-align: center;
+    font-size: 16vw;
+  }
+
+  .scatter {
+    bottom: 220px;
+  }
+
+  .photo {
+    width: calc(var(--s) * 0.85);
+    height: calc(var(--s) * 0.85);
+  }
+}
